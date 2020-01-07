@@ -1,0 +1,16 @@
+{
+  "info": {
+    "name": "re"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "namme": {
+      "type": "string"
+    }
+  },
+  "connection": "default",
+  "collectionName": "re"
+}

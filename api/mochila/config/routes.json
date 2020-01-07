@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/mochilas",
+      "handler": "mochila.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/mochilas/count",
+      "handler": "mochila.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/mochilas/:id",
+      "handler": "mochila.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/mochilas",
+      "handler": "mochila.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/mochilas/:id",
+      "handler": "mochila.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/mochilas/:id",
+      "handler": "mochila.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
