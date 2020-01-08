@@ -9,7 +9,7 @@
 const _ = require("lodash");
 
 module.exports = {
-  async upload(ctx) {
+  /* async upload(ctx) {
     console.warn("GOT HERE UPLOAD");
     const uploadService = strapi.plugins.importer.services.importer;
 
@@ -56,19 +56,6 @@ module.exports = {
     const buffers = await uploadService.bufferize(files);
 
     const enhancedFiles = buffers.map(file => {
-      if (file.size > config.sizeLimit) {
-        return ctx.badRequest(null, [
-          {
-            messages: [
-              {
-                id: "Upload.status.sizeLimit",
-                message: `${file.name} file is bigger than limit size!`,
-                values: { file: file.name }
-              }
-            ]
-          }
-        ]);
-      }
 
       // Add details to the file to be able to create the relationships.
       if (refId && ref && field) {
@@ -134,5 +121,20 @@ module.exports = {
     );
 
     ctx.send({ count: data });
+  } */
+
+  async upload(ctx) {
+    console.warn("GOT HERE upload");
+    ctx.send({ upload: 1 });
+  },
+
+  async count(ctx) {
+    console.warn("GOT HERE count");
+    ctx.send({ count: 1 });
+  },
+
+  async find(ctx) {
+    console.warn("GOT HERE find");
+    ctx.send({ find: 1 });
   }
 };
