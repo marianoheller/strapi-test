@@ -10,6 +10,7 @@ const _ = require("lodash");
 
 module.exports = {
   async upload(ctx) {
+    console.warn("GOT HERE UPLOAD");
     const uploadService = strapi.plugins.importer.services.importer;
 
     // Retrieve provider configuration.
@@ -105,6 +106,7 @@ module.exports = {
   },
 
   async find(ctx) {
+    console.warn("GOT HERE FIND");
     const data = await strapi.plugins["importer"].services.importer.fetchAll(
       ctx.query
     );
@@ -126,6 +128,7 @@ module.exports = {
   },
 
   async count(ctx) {
+    console.warn("GOT HERE COUNT");
     const data = await strapi.plugins["importer"].services.importer.count(
       ctx.query
     );

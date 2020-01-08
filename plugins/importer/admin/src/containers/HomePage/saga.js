@@ -16,8 +16,8 @@ import { GET_DATA, ON_DROP } from "./constants";
 function* dataGet() {
   try {
     const data = yield all([
-      call(request, "/importer/pizzas", { method: "GET" }),
-      call(request, "/importer/pizzas/count", { method: "GET" })
+      call(request, "/importer", { method: "GET" }),
+      call(request, "/importer/count", { method: "GET" })
     ]);
     const entries = data[0].length === 0 ? [] : data[0].map(obj => Map(obj));
     yield put(getDataSuccess(entries, data[1].count));
