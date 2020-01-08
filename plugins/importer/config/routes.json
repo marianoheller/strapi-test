@@ -1,11 +1,42 @@
 {
   "routes": [
     {
-      "method": "GET",
-      "path": "/",
-      "handler": "Importer.index",
+      "method": "POST",
+      "path": "/pizzas",
+      "handler": "Importer.upload",
       "config": {
-        "policies": []
+        "policies": [],
+        "description": "Upload a file",
+        "tag": {
+          "plugin": "importer",
+          "name": "File"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pizzas/count",
+      "handler": "Importer.count",
+      "config": {
+        "policies": [],
+        "description": "Retrieve the total number of uploaded pizzas",
+        "tag": {
+          "plugin": "importer",
+          "name": "File"
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/pizzas",
+      "handler": "Importer.find",
+      "config": {
+        "policies": [],
+        "description": "Retrieve all pizza documents",
+        "tag": {
+          "plugin": "importer",
+          "name": "File"
+        }
       }
     }
   ]

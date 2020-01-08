@@ -1,0 +1,10 @@
+{
+  "files.watcherExclude": {
+    "**/.cache": true,
+    "**/build": true
+  },
+  "files.exclude": {
+    "**/.cache": true,
+    "**/build": true
+  }
+}
