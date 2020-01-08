@@ -2,7 +2,7 @@
   "routes": [
     {
       "method": "POST",
-      "path": "/importer",
+      "path": "/pizza",
       "handler": "Importer.upload",
       "config": {
         "policies": [],
@@ -15,7 +15,7 @@
     },
     {
       "method": "GET",
-      "path": "/importer/count",
+      "path": "/pizza/count",
       "handler": "Importer.count",
       "config": {
         "policies": [],
@@ -28,7 +28,7 @@
     },
     {
       "method": "GET",
-      "path": "/importer",
+      "path": "/pizza",
       "handler": "Importer.find",
       "config": {
         "policies": [],

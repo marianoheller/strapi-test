@@ -26,31 +26,6 @@ class Li extends React.Component {
     }
   }
 
-  getUnit = value => {
-    let unit;
-    let divider;
-
-    switch (true) {
-      case value > 1000000:
-        unit = "GB";
-        divider = 1000000;
-        break;
-      case value < 1:
-        unit = "B";
-        divider = 0.001;
-        break;
-      case value > 1000:
-        unit = "MB";
-        divider = 1000;
-        break;
-      default:
-        unit = "KB";
-        divider = 1;
-    }
-
-    return { divider, unit };
-  };
-
   handleClick = e => {
     e.preventDefault();
     const aTag = document.getElementById(this.props.item.hash);
@@ -112,36 +87,23 @@ class Li extends React.Component {
               <div />
               <FileIcon fileType={item.ext} />
             </div>
-            {["hash", "name", "updatedAt", "size", "relatedTo", ""].map(
-              (value, key) => {
-                if (value === "updatedAt") {
-                  return (
-                    <Truncate key={key}>
-                      {moment(item.updatedAt || item.updated_at).format(
-                        "YYYY/MM/DD - HH:mm"
-                      )}
-                    </Truncate>
-                  );
-                }
-
-                if (value === "size") {
-                  const { divider, unit } = this.getUnit(item[value]);
-                  const size = item[value] / divider;
-
-                  return (
-                    <Truncate key={key}>
-                      {Math.round(size * 100) / 100}&nbsp;{unit}
-                    </Truncate>
-                  );
-                }
-
-                if (value !== "") {
-                  return <Truncate key={key}>{item[value]}</Truncate>;
-                }
-
-                return <IcoContainer key={key} icons={icons} />;
+            {["hash", "name", "updatedAt", ""].map((value, key) => {
+              if (value === "updatedAt") {
+                return (
+                  <Truncate key={key}>
+                    {moment(item.updatedAt || item.updated_at).format(
+                      "YYYY/MM/DD - HH:mm"
+                    )}
+                  </Truncate>
+                );
               }
-            )}
+
+              if (value !== "") {
+                return <Truncate key={key}>{item[value]}</Truncate>;
+              }
+
+              return <IcoContainer key={key} icons={icons} />;
+            })}
           </Wrapper>
           <PopUpWarning
             isOpen={this.state.isOpen}

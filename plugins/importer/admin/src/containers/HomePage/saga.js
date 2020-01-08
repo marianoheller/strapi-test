@@ -8,6 +8,7 @@ import pluginId from "../../pluginId";
 import {
   uploadSuccess,
   getDataSuccess,
+  getData,
   setLoading,
   unsetLoading
 } from "./actions";
@@ -16,8 +17,8 @@ import { GET_DATA, ON_DROP } from "./constants";
 function* dataGet() {
   try {
     const data = yield all([
-      call(request, "/importer", { method: "GET" }),
-      call(request, "/importer/count", { method: "GET" })
+      call(request, "/importer/pizza", { method: "GET" }),
+      call(request, "/importer/pizza/count", { method: "GET" })
     ]);
     const entries = data[0].length === 0 ? [] : data[0].map(obj => Map(obj));
     yield put(getDataSuccess(entries, data[1].count));
@@ -26,31 +27,25 @@ function* dataGet() {
   }
 }
 
-function* uploadFiles(action) {
+function* upload(action) {
   try {
     yield put(setLoading());
     const headers = {};
     const response = yield call(
       request,
-      "/importer",
+      "/importer/pizza",
       { method: "POST", headers, body: action.formData },
       false,
       false
     );
-    const newFiles = response.map(file => Map(file));
+    const pizzas = response.map(piza => Map(piza));
 
-    yield put(uploadSuccess(newFiles));
+    yield put(uploadSuccess(pizzas));
+    yield put(getData());
 
-    if (newFiles.length > 1) {
-      strapi.notification.success({
-        id: "importer.notification.uploadFiles.success",
-        values: { number: newFiles.length }
-      });
-    } else {
-      strapi.notification.success({
-        id: "importer.notification.uploadFile.success"
-      });
-    }
+    strapi.notification.success({
+      id: "importer.notification.uploadFile.success"
+    });
   } catch (error) {
     let message = get(error, [
       "response",
@@ -70,7 +65,7 @@ function* uploadFiles(action) {
 }
 
 export function* defaultSaga() {
-  yield fork(takeLatest, ON_DROP, uploadFiles);
+  yield fork(takeLatest, ON_DROP, upload);
   yield fork(takeLatest, GET_DATA, dataGet);
 }
 

@@ -8,6 +8,7 @@
     "description": "Description of importer plugin."
   },
   "dependencies": {
+    "fast-csv": "^4.0.2",
     "immutable": "^3.8.2",
     "invariant": "^2.2.1",
     "lodash": "^4.17.11",
@@ -22,9 +23,7 @@
     "reactstrap": "^5.0.0",
     "strapi-helper-plugin": "3.0.0-beta.18.4",
     "strapi-provider-upload-local": "3.0.0-beta.18.4",
-    "strapi-utils": "3.0.0-beta.18.4",
-    "stream-to-array": "^2.3.0",
-    "uuid": "^3.2.1"
+    "strapi-utils": "3.0.0-beta.18.4"
   },
   "author": {
     "name": "A Strapi developer",

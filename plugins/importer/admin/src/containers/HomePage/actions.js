@@ -48,6 +48,7 @@ export function unsetLoading() {
 
 export function onDrop({ dataTransfer: { files } }) {
   const formData = Object.keys(files).reduce((acc, current) => {
+    /* TODO: file o files? */
     acc.append("files", files[current]);
     return acc;
   }, new FormData());

@@ -1,0 +1,23 @@
+{
+  "connection": "default",
+  "collectionName": "importer_pizza",
+  "info": {
+    "name": "pizza",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "ranking": {
+      "type": "integer"
+    }
+  }
+}

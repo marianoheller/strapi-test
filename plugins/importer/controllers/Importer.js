@@ -9,132 +9,28 @@
 const _ = require("lodash");
 
 module.exports = {
-  /* async upload(ctx) {
-    console.warn("GOT HERE UPLOAD");
-    const uploadService = strapi.plugins.importer.services.importer;
-
-    // Retrieve provider configuration.
-    const config = await strapi
-      .store({
-        environment: strapi.config.environment,
-        type: "plugin",
-        name: "importer"
-      })
-      .get({ key: "provider" });
-
-    // Verify if the file upload is enable.
-    if (config.enabled === false) {
-      return ctx.badRequest(
-        null,
-
-        [
-          {
-            messages: [
-              {
-                id: "Upload.status.disabled",
-                message: "File upload is disabled"
-              }
-            ]
-          }
-        ]
+  async upload(ctx) {
+    try {
+      const { files = {} } = ctx.request.files || {};
+      const data = await strapi.plugins["importer"].services.importer.persist(
+        files
       );
+      ctx.send(data);
+    } catch (err) {
+      ctx.throw(400, err);
     }
+  },
 
-    // Extract optional relational data.
-    const { refId, ref, source, field, path } = ctx.request.body || {};
-    const { files = {} } = ctx.request.files || {};
-
-    if (_.isEmpty(files)) {
-      return ctx.badRequest(null, [
-        {
-          messages: [{ id: "Upload.status.empty", message: "Files are empty" }]
-        }
-      ]);
-    }
-
-    // Transform stream files to buffer
-    const buffers = await uploadService.bufferize(files);
-
-    const enhancedFiles = buffers.map(file => {
-
-      // Add details to the file to be able to create the relationships.
-      if (refId && ref && field) {
-        Object.assign(file, {
-          related: [
-            {
-              refId,
-              ref,
-              source,
-              field
-            }
-          ]
-        });
-      }
-
-      // Update uploading folder path for the file.
-      if (path) {
-        Object.assign(file, {
-          path
-        });
-      }
-
-      return file;
-    });
-
-    // Something is wrong (size limit)...
-    if (ctx.status === 400) {
-      return;
-    }
-
-    const uploadedFiles = await uploadService.upload(enhancedFiles, config);
-
-    // Send 200 `ok`
-    ctx.send(uploadedFiles);
+  async count(ctx) {
+    ctx.send({ count: 1 });
   },
 
   async find(ctx) {
-    console.warn("GOT HERE FIND");
     const data = await strapi.plugins["importer"].services.importer.fetchAll(
       ctx.query
     );
 
     // Send 200 `ok`
     ctx.send(data);
-  },
-
-  async findOne(ctx) {
-    const data = await strapi.plugins["importer"].services.importer.fetch(
-      ctx.params
-    );
-
-    if (!data) {
-      return ctx.notFound("file.notFound");
-    }
-
-    ctx.send(data);
-  },
-
-  async count(ctx) {
-    console.warn("GOT HERE COUNT");
-    const data = await strapi.plugins["importer"].services.importer.count(
-      ctx.query
-    );
-
-    ctx.send({ count: data });
-  } */
-
-  async upload(ctx) {
-    console.warn("GOT HERE upload");
-    ctx.send({ upload: 1 });
-  },
-
-  async count(ctx) {
-    console.warn("GOT HERE count");
-    ctx.send({ count: 1 });
-  },
-
-  async find(ctx) {
-    console.warn("GOT HERE find");
-    ctx.send({ find: 1 });
   }
 };

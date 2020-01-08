@@ -6,7 +6,7 @@
 
 const PREFIX = "importer/homepage";
 
-export const UPLOAD_SUCCESS = `${PREFIX}/UPLOAD_SUCCESS`;
+export const DROP_SUCCESS = `${PREFIX}/DROP_SUCCESS`;
 export const ON_DROP = `${PREFIX}/ON_DROP`;
 export const GET_DATA = `${PREFIX}/GET_DATA`;
 export const GET_DATA_SUCCESS = `${PREFIX}/GET_DATA_SUCCESS`;

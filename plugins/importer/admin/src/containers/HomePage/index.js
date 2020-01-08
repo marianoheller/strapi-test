@@ -29,6 +29,9 @@ import selectHomePage from "./selectors";
 import reducer from "./reducer";
 import saga from "./saga";
 
+// TODO: fix this
+const formatMessage =({ id }) => id || 'asd';
+
 export class HomePage extends React.Component {
   static contextType = GlobalContext;
 
@@ -48,7 +51,7 @@ export class HomePage extends React.Component {
   );
 
   render() {
-    const { formatMessage } = this.context;
+    // const { formatMessage } = this.context;
 
     return (
       <ContainerFluid className="container-fluid">
@@ -72,14 +75,14 @@ export class HomePage extends React.Component {
         <EntriesWrapper>
           <EntriesNumber number={this.props.entriesNumber} />
         </EntriesWrapper>
-        <List data={this.props.uploadedFiles} />
+        <List data={this.props.pizzas} />
       </ContainerFluid>
     );
   }
 }
 
 HomePage.defaultProps = {
-  uploadedFiles: []
+  pizzas: []
 };
 
 HomePage.propTypes = {
@@ -87,7 +90,7 @@ HomePage.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   onDrop: PropTypes.func.isRequired,
-  uploadedFiles: PropTypes.arrayOf(PropTypes.object),
+  pizzas: PropTypes.arrayOf(PropTypes.object),
   uploadFilesLoading: PropTypes.bool.isRequired
 };
 

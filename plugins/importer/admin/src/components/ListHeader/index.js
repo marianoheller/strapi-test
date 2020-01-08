@@ -15,9 +15,6 @@ function ListHeader({ changeSort, sort }) {
     "hash",
     "name",
     "updated",
-    "size",
-    // 'related',
-    "",
     ""
   ];
 
